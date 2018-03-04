@@ -1,9 +1,5 @@
 (function () {
-  const BASE_URL = 'https://od-api.oxforddictionaries.com/api/v1';
-  const APP_ID = '6f6b02bb';
-  const APP_KEY = 'c9992070793f4cd646520c081fc8fb28';
-  axios.defaults.headers.common['app_id'] = APP_ID;
-  axios.defaults.headers.common['app_key'] = APP_KEY;
+  const BASE_URL = 'http://localhost:5000';
 
   const form = document.getElementById('wordsForm');
   const translationsWrapper = document.getElementById('translations');
@@ -13,13 +9,24 @@
     const baseText = e.target.elements[0].value || '';
     const words = baseText.split('\n');
 
-    Promise.all(words.map(getEntry)).then((translations) => {
-      console.log(translations);
+    Promise.all(words.map(getEntry)).then((entries) => {
+      translationsWrapper.innerHTML = entries.map((entry) => `
+        <div class="ui segment">  
+          <h3>${entry.word}</h3>
+          <p>${entry.meaning}</p>
+        </div>
+      `).join('');
     });
   });
 
   function getEntry(word) {
-    return axios.get(`${BASE_URL}/entries/en/${encodeWord(word)}`);
+    return axios({
+      method: 'GET',
+      url: `${BASE_URL}/words/${encodeWord(word)}`
+    }).then((res) => ({
+      word,
+      meaning: res.data[0].lexicalEntries[0].entries[0].senses[0].definitions[0]
+    }));
   }
 
   function encodeWord(word) {
