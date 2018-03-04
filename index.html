@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angielskie</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.css">
+</head>
+<body>
+  <div class="ui container">
+    <div class="ui grid centered">
+      <div class="ui column sixteen wide">
+        <form id="wordsForm" class="ui form">
+          <div class="field">
+            <label>Dawaj slowka:</label>
+            <textarea name="words"></textarea>
+          </div>
+
+          <button type="submit" class="ui button primary">Tlumacz</button>
+        </form>
+      </div>
+      
+      <div id="translations" class="ui column sixteen wide">
+        
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
