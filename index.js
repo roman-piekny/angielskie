@@ -1,5 +1,5 @@
 (function () {
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = 'https://angielskie-api.herokuapp.com';
 
   const form = document.getElementById('wordsForm');
   const translationsWrapper = document.getElementById('translations');
